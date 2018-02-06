@@ -48,6 +48,29 @@ def add_mods(AA):
             if type=='f':
                 del AA[residue]
     return AA
+    
+def createTagCandidates(AA):
+    tagCandidates = []
+    for a in AA:
+        for b in AA:
+            for c in AA:
+                sequence = a+b+c
+                components = [
+                    a,
+                    b,
+                    c
+                ]
+                peaks = [
+                    AA[a],
+                    AA[a] + AA[b],
+                    AA[a] + AA[b] + AA[c]
+                ]
+                tagCandidates.append({
+                    'sequence': sequence,
+                    'components': components,
+                    'peaks': peaks
+                })
+    return tagCandidates
 
 # find_nearest will find the value in array that is closest to value
 def find_nearest(array, value):
